@@ -26,6 +26,10 @@ services:
     environment:
       - PORT=3434
       - NODE_ENV=development
+      - VITE_API_ENDPOINT=http://localhost:8080
+      - VITE_GOOGLE_CLIENT_ID=YOUR_GOOGLE_CLIENT_ID
+      - VITE_GOOGLE_REDIRECT_URI=http://localhost:3434
+      - VITE_GOOGLE_SCOPE=profile email
     volumes:
       - ./Ant-client/src:/Ant-client/src
       - ./Ant-client/vite.config.ts:/Ant-client/vite.config.ts
