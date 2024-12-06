@@ -1,0 +1,14 @@
+FROM gradle:jdk21 as builder
+WORKDIR /app
+
+COPY build.gradle settings.gradle ./
+COPY src/ ./src/
+
+RUN gradle clean build
+
+FROM openjdk:21-slim
+WORKDIR /src
+
+COPY --from=builder app/build/libs/Ant-server-0.0.1-SNAPSHOT.jar app.jar
+
+ENTRYPOINT ["java","-jar","/src/app.jar"]
